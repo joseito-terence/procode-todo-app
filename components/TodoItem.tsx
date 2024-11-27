@@ -1,16 +1,19 @@
 import { Feather } from '@expo/vector-icons';
 import { View, Text, Pressable } from 'react-native';
 
+import { Button } from './Button';
+
 import { TodoType } from '~/app';
 
 interface TodoItemProps {
   todo: TodoType;
   onToggleTodo: (id: string) => void;
+  onRemoveTodo: (id: string) => void;
 }
 
-export default function TodoItem({ todo, onToggleTodo }: TodoItemProps) {
+export default function TodoItem({ todo, onToggleTodo, onRemoveTodo }: TodoItemProps) {
   return (
-    <View className="px-2 py-2">
+    <View className="flex-row items-center gap-1 px-2 py-2">
       <Pressable
         onPress={() => onToggleTodo(todo.id)}
         className={`
@@ -33,6 +36,10 @@ export default function TodoItem({ todo, onToggleTodo }: TodoItemProps) {
           {todo.text}
         </Text>
       </Pressable>
+
+      <Button className="aspect-square bg-slate-300 p-[8px]" onPress={() => onRemoveTodo(todo.id)}>
+        <Feather name="x" size={24} color="#64748b" />
+      </Button>
     </View>
   );
 }

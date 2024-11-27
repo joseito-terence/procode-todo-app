@@ -8,9 +8,10 @@ import type { TodoType } from '~/app';
 interface TodosListProps {
   todos: TodoType[];
   onToggleTodo: (id: string) => void;
+  onRemoveTodo: (id: string) => void;
 }
 
-export default function TodosList({ todos, onToggleTodo }: TodosListProps) {
+export default function TodosList({ todos, onToggleTodo, onRemoveTodo }: TodosListProps) {
   if (todos.length === 0) {
     return (
       <View className="flex-1 items-center justify-center">
@@ -24,7 +25,9 @@ export default function TodosList({ todos, onToggleTodo }: TodosListProps) {
     <FlatList
       data={todos}
       keyExtractor={(item, index) => `${item}-${index}`}
-      renderItem={({ item }) => <TodoItem todo={item} onToggleTodo={onToggleTodo} />}
+      renderItem={({ item }) => (
+        <TodoItem todo={item} onToggleTodo={onToggleTodo} onRemoveTodo={onRemoveTodo} />
+      )}
       contentContainerClassName="pb-4"
       keyboardDismissMode="on-drag"
     />

@@ -1,7 +1,7 @@
 import Entypo from '@expo/vector-icons/Entypo';
 import { Stack } from 'expo-router';
 import { useState, useCallback } from 'react';
-import { View, KeyboardAvoidingView, Platform, Keyboard } from 'react-native';
+import { View, KeyboardAvoidingView, Platform, Keyboard, Alert } from 'react-native';
 
 import { Button } from '~/components/Button';
 import { Container } from '~/components/Container';
@@ -41,6 +41,19 @@ export default function Home() {
     setNewTodo(text);
   }, []);
 
+  const handleRemoveTodo = useCallback((id: string) => {
+    Alert.alert('Remove Todo', 'Are you sure you want to remove this todo?', [
+      {
+        text: 'Cancel',
+        style: 'cancel',
+      },
+      {
+        text: 'OK',
+        onPress: () => setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== id)),
+      },
+    ]);
+  }, []);
+
   return (
     <>
       <Stack.Screen
@@ -54,7 +67,11 @@ export default function Home() {
           behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
           className="m-4 flex-1 flex-col">
           <View className="flex-1">
-            <TodosList todos={todos} onToggleTodo={handleToggleTodo} />
+            <TodosList
+              todos={todos}
+              onToggleTodo={handleToggleTodo}
+              onRemoveTodo={handleRemoveTodo}
+            />
           </View>
 
           <View className="flex-row gap-2 py-4">
