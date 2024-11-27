@@ -6,6 +6,7 @@ import { View, KeyboardAvoidingView, Platform, Keyboard, Alert } from 'react-nat
 import { Button } from '~/components/Button';
 import { Container } from '~/components/Container';
 import Input from '~/components/Input';
+import TodoStats from '~/components/TodoStats';
 import TodosList from '~/components/TodosList';
 
 export interface TodoType {
@@ -74,6 +75,7 @@ export default function Home() {
             />
           </View>
 
+          <TodoStats todos={todos} />
           <View className="flex-row gap-2 py-4">
             <Input
               placeholder="What needs to be done?"
