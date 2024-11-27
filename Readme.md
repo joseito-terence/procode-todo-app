@@ -13,7 +13,10 @@ A simple and elegant todo list application built with React Native, Expo, and Na
 
 ## Demo
 
-![Todo App Demo](./assets/procode-todo-app-recording.mp4)
+<video width="100%" controls>
+  <source src="./assets/procode-todo-app-recording.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
 
 ## Technologies Used
 
