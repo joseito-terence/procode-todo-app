@@ -12,11 +12,7 @@ A simple and elegant todo list application built with React Native, Expo, and Na
 - Todo statistics showing completed/total items
 
 ## Demo
-
-<video width="100%" controls>
-  <source src="./assets/procode-todo-app-recording.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+https://github.com/user-attachments/assets/7930fbd0-dfc2-412e-a8d1-6dd1048113bb
 
 ## Technologies Used
 
