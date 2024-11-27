@@ -13,7 +13,7 @@ interface TodoItemProps {
 
 export default function TodoItem({ todo, onToggleTodo, onRemoveTodo }: TodoItemProps) {
   return (
-    <View className="flex-row items-center gap-1 px-2 py-2">
+    <View className="flex-row items-center gap-2 px-2 py-2">
       <Pressable
         onPress={() => onToggleTodo(todo.id)}
         className={`

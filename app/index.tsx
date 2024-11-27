@@ -50,6 +50,7 @@ export default function Home() {
       },
       {
         text: 'OK',
+        style: 'destructive',
         onPress: () => setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== id)),
       },
     ]);
