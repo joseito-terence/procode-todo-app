@@ -1,5 +1,6 @@
 import { Feather } from '@expo/vector-icons';
-import { View, Text, Pressable } from 'react-native';
+import { useCallback } from 'react';
+import { View, Text, Pressable, Alert, Platform } from 'react-native';
 
 import { Button } from './Button';
 
@@ -12,6 +13,25 @@ interface TodoItemProps {
 }
 
 export default function TodoItem({ todo, onToggleTodo, onRemoveTodo }: TodoItemProps) {
+  const removeTodo = useCallback(() => {
+    if (Platform.OS === 'web') {
+      onRemoveTodo(todo.id);
+      return;
+    }
+
+    Alert.alert('Remove Todo', 'Are you sure you want to remove this todo?', [
+      {
+        text: 'Cancel',
+        style: 'cancel',
+      },
+      {
+        text: 'OK',
+        style: 'destructive',
+        onPress: () => onRemoveTodo(todo.id),
+      },
+    ]);
+  }, [todo.id]);
+
   return (
     <View className="flex-row items-center gap-2 px-2 py-2">
       <Pressable
@@ -37,7 +57,7 @@ export default function TodoItem({ todo, onToggleTodo, onRemoveTodo }: TodoItemP
         </Text>
       </Pressable>
 
-      <Button className="aspect-square bg-slate-300 p-[8px]" onPress={() => onRemoveTodo(todo.id)}>
+      <Button className="aspect-square bg-slate-300 p-[8px]" onPress={removeTodo}>
         <Feather name="x" size={24} color="#64748b" />
       </Button>
     </View>

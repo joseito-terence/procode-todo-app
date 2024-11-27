@@ -1,7 +1,7 @@
 import Entypo from '@expo/vector-icons/Entypo';
 import { Stack } from 'expo-router';
 import { useState, useCallback } from 'react';
-import { View, KeyboardAvoidingView, Platform, Keyboard, Alert } from 'react-native';
+import { View, KeyboardAvoidingView, Platform, Keyboard } from 'react-native';
 
 import { Button } from '~/components/Button';
 import { Container } from '~/components/Container';
@@ -43,17 +43,7 @@ export default function Home() {
   }, []);
 
   const handleRemoveTodo = useCallback((id: string) => {
-    Alert.alert('Remove Todo', 'Are you sure you want to remove this todo?', [
-      {
-        text: 'Cancel',
-        style: 'cancel',
-      },
-      {
-        text: 'OK',
-        style: 'destructive',
-        onPress: () => setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== id)),
-      },
-    ]);
+    setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== id));
   }, []);
 
   return (
